@@ -6,14 +6,25 @@
     <title>Canvas First Try</title>
 </head>
 <body>
-    <canvas id="canvas" width="400" height="400"></canvas>
+    <main>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <canvas id="preview" style="display: none;"></canvas>
+    </main>
     <style>
         body {
             display: flex;
             justify-content: center;
         }
+        main {
+            position: relative;
+        }
         #canvas {
             border: 1px solid lightgray;
+        }
+        #preview {
+            position: absolute;
+            top: 0; 
+            left: 0;
         }
     </style>
 </body>
