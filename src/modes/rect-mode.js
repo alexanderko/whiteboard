@@ -1,5 +1,5 @@
-import { zip } from 'rxjs'
-import { map, takeUntil, combineLatest, repeat } from 'rxjs/operators'
+import { zip, combineLatest } from 'rxjs'
+import { map, takeUntil, repeat } from 'rxjs/operators'
 import { watchMouseCoord } from './unit'
 
 export class RectMode {
@@ -22,9 +22,8 @@ export class RectMode {
     const coord$ = watchMouseCoord(this.preview, 'mousemove')
     const endPoint$ = watchMouseCoord(this.preview, 'mouseup')
 
-    this.previewSubscription = startPoint$
+    this.previewSubscription = combineLatest([startPoint$, coord$])
       .pipe(
-        combineLatest(coord$),
         map(pointsToRect),
         takeUntil(endPoint$),
         repeat()
